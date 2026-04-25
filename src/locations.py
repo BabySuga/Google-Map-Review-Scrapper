@@ -1,5 +1,3 @@
 GOOGLE_MAP_URLS = [
-    # Ganti dengan URL Google Maps masing-masing cabang One M
-    "https://www.google.com/maps",
+    # Isi dengan URL Google Maps place yang valid kalau mau pakai script demo backend.
 ]
-

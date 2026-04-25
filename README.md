@@ -40,6 +40,13 @@ python -m streamlit run src/frontend/app.py
 
 Kalau command itu sukses, browser akan terbuka dan menampilkan dashboard lokal.
 
+Di dashboard kamu bisa:
+
+- isi keyword filter, misalnya `beat` atau `beat 2021`
+- tambah beberapa URL Google Maps place pakai tombol `+`
+- hapus URL yang salah pakai tombol `-`
+- klik `Jalankan` untuk fetch review dari Apify
+
 ## Menjalankan BE
 
 Backend saat ini masih berupa script Python sederhana untuk uji logic dan integrasi Apify:
@@ -52,8 +59,10 @@ Kalau `streamlit` tidak dikenali, itu biasanya karena package belum terpasang di
 
 Catatan:
 
-- Saat ini BE belum berupa server API terpisah
-- Nanti kalau sudah masuk tahap produksi, BE bisa kita ubah ke FastAPI supaya FE dan BE benar-benar komunikasi lewat HTTP
+- Saat ini FE langsung memanggil logic backend Python, jadi belum perlu server API terpisah
+- Hasil raw review akan disimpan ke `data/raw/` sebagai JSON
+- Review yang cocok dengan keyword akan ditampilkan di dashboard
+- Nanti kalau perlu, BE bisa kita ubah ke FastAPI supaya FE dan BE benar-benar komunikasi lewat HTTP
 
 ## Struktur Folder
 

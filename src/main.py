@@ -1,5 +1,12 @@
+from pathlib import Path
+import sys
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from src.config import APIFY_TOKEN
-from src.apify_runner import run_google_places_actor
+from src.apify_runner import run_google_maps_reviews_scraper
 from src.locations import GOOGLE_MAP_URLS
 
 
@@ -14,13 +21,17 @@ def main():
     if not APIFY_TOKEN:
         return
 
-    dataset_id, dataset_items = run_google_places_actor(
+    if not GOOGLE_MAP_URLS:
+        print("No Google Maps place URLs configured in src/locations.py")
+        return
+
+    result = run_google_maps_reviews_scraper(
         api_token=APIFY_TOKEN,
-        search_strings=["Honda Beat"],
-        location_query="Indonesia",
+        place_urls=GOOGLE_MAP_URLS,
+        keywords="beat",
     )
-    print("Data from the dataset:", dataset_items)
-    print(f"Dataset ID: {dataset_id}")
+    print("Data from the dataset:", result["raw_items"])
+    print(f"Dataset ID: {result['dataset_id']}")
 
 
 if __name__ == "__main__":

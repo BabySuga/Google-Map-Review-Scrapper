@@ -40,12 +40,15 @@ python -m streamlit run src/frontend/app.py
 
 Kalau command itu sukses, browser akan terbuka dan menampilkan dashboard lokal.
 
+Streamlit sudah dikonfigurasi untuk auto-rerun saat file berubah lewat [.streamlit/config.toml](/c:/Users/nabil/Documents/Projek%20Iseng/Google-Map-Review-Scrapper/.streamlit/config.toml).
+
 Di dashboard kamu bisa:
 
 - isi keyword filter, misalnya `beat` atau `beat 2021`
 - tambah beberapa URL Google Maps place pakai tombol `+`
 - hapus URL yang salah pakai tombol `-`
 - klik `Jalankan` untuk fetch review dari Apify
+- hasil lama akan dipakai dari cache lokal kalau input-nya sama, jadi tidak selalu hit API
 
 ## Menjalankan BE
 
@@ -70,4 +73,5 @@ Catatan:
 - `src/backend/` - tempat logic backend nantinya
 - `src/` - helper umum seperti config dan parser input
 - `data/raw/` - simpan hasil mentah dari Apify
+- `data/cache/` - simpan cache hasil scraping agar tidak hit API berulang
 - `data/processed/` - simpan hasil filter
